@@ -18,3 +18,19 @@
     background-color: black; 
     color: white; 
 }
+.product-details {
+    width: 100%; 
+    height: 600px; 
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .product-details img {
+    width: 400px;
+    height: 400px;
+    object-fit: contain; 
+  }
+  

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,78 +10,90 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a href="index.html "class="text-decoration-none fs-2 fw-bold text-dark">Ecommerce</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-center mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="products.html">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="contact-page.html">Contact</a>
-                    </li>
-                </ul>
-                <form class="d-flex p-2 me-1 ">
-                    <button class="btn btn-outline-dark ms-4" type="submit"> <i
-                            class="fa-solid fa-right-to-bracket"></i> &nbsp;<a href="login.html" class="text-decoration-none text-dark"> Login</a></button>
-                    <button class="btn btn-outline-dark ms-4" type="submit"> <i class="fa-solid fa-user-plus"></i>
-                        &nbsp;<a href="register.html" class="text-decoration-none text-dark"> Register</a></button>
-                    <button class="btn btn-outline-dark ms-4" type="submit"> <i class="fa-solid fa-cart-shopping"></i>
-                        &nbsp;<a href="login.html" class="text-decoration-none text-dark"> Cart</a></button>
-                </form>
-            </div>
-        </div>
-    </nav>
     <div class="product-details mt-5">
-        </div>
     </div>
+    <h3>You may like products</h3>
+    <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
     <script>
-        function fetchSingleProduct(){
-            const productId=new URLSearchParams(window.location.search).get('id')
-            const fetchProduct=fetch(`https://fakestoreapi.com/products/${productId}`).then((resp)=>{
-               return resp.json()
-            }).then((product)=>{
+        function fetchSingleProduct() {
+            const productId = new URLSearchParams(window.location.search).get('id')
+            const fetchProduct = fetch(`https://fakestoreapi.com/products/${productId}`).then((resp) => {
+                return resp.json()
+            }).then((product) => {
                 singleProductHandler(product)
             })
         }
         fetchSingleProduct()
 
-        function singleProductHandler(product){
-            const productDetails=document.querySelector('.product-details')
-           
-                productDetails.innerHTML=`<div class="product-container d-flex">
-                <div class="product-img  ">
-                <img src=${product.image} alt="product-image" class="img-fluid ms-5">
+        function singleProductHandler(product) {
+            const productDetails = document.querySelector('.product-details')
+
+            productDetails.innerHTML += `<div class="product-container d-flex">
+                <div class="product-img  mt-3 ">
+                <img src=${product.image} alt="product-image" class=" ms-5">
                 </div>
-                <div class="product-info mt-1 pt-5 ms-5 ps-5 ">
+                <div class="product-info mt-5 ms-5">
                     <h3 class="fs-3 text-secondary">${product.category.toUpperCase()}</h3>
                     <p class="fs-1 fw-lighter"> ${product.title}</p>
                     <p class="fw-lighter"> ${product.rating.rate} <i class="fa-solid fa-star"></i></p>
                     <div class="product-price fs-3 text-body-tertiary fw-lighter">$${product.price}</div>
-                    <div class="product-description fw-lighter text-body-tertiar fs-6">${product.description}</div>
+                    <div class="product-description fw-lighter text-body-tertiar fs-6 mt-2">${product.description}</div>
                     <div class="product-button mt-3 ">
                         <a href="" class="btn btn-dark ">Add to Cart</a>
-                        <a href="#" class="btn btn-dark">Go to Cart</a>
+                        <a href="#" class="btn btn-dark ms-3">Go to Cart</a>
                     </div>
                 </div> 
             </div>`
-           
         }
-        
+        function fetchProducts() {
+            const fetchProducts = fetch('https://fakestoreapi.com/products').then((resp) => {
+                return resp.json()
+            }).then((data) => {
+                productSlider(data)
+            })
+        }
+        fetchProducts()
+
+        function productSlider(data) {
+            const carouselInner = document.querySelector('.carousel-inner')
+
+            data.forEach((product, index) => {
+                const activeClass = index === 0 ? "active" : "";
+                const shortendTitle = product.title.slice(0, 20) + "...";
+                const carouselItem = `
+        <div class="carousel-item ${activeClass}">
+            <div class="card mx-auto" style="width: 18rem;">
+                <img src="${product.image}" class="card-img-top p-2" alt="${product.title}">
+                <div class="card-body">
+                    <h5 class="card-title">${shortendTitle}</h5>
+                </div>
+                <div class="product-button mt-3 ">
+                        <a href="" class="btn btn-dark ">Add to Cart</a>
+                        <a href="" class="btn btn-dark ms-3">Go to Cart</a>
+            </div>
+        </div>`;
+        carouselInner.innerHTML += carouselItem;
+
+            });
+        }
 
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-WjP14eFU6gl1C3GSmOhd4YcnllN6+e4PqFoBZ5iEzOz3Dx1u06Aw1N7D2RQy7FFw" crossorigin="anonymous"></script>
+
 </body>
+
 </html>
