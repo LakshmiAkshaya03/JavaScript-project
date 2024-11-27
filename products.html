@@ -57,19 +57,17 @@
             <nav class="navbar bg-body-tertiary">
                 <div class="container-fluid">
                     <form class="d-flex justify-content-center mx-auto mt-5 ">
-                        <button class="btn btn-outline-dark ms-3" type="submit">All</button>
-                        <button class="btn btn-outline-dark ms-3" type="submit">Men's Clothing</button>
-                        <button class="btn btn-outline-dark ms-3" type="submit">Women's Clothing</button>
-                        <button class="btn btn-outline-dark ms-3" type="submit">Jewellery</button>
-                        <button class="btn btn-outline-dark ms-3" type="submit">Electronics</button>
+                        <button class="btn btn-outline-dark ms-3" type="button" data-category="all">All</button>
+                        <button class="btn btn-outline-dark ms-3" type="button" data-category="men's clothing">Men's Clothing</button>
+                        <button class="btn btn-outline-dark ms-3" type="button" data-category="women's clothing">Women's Clothing</button>
+                        <button class="btn btn-outline-dark ms-3" type="button" data-category="jewelery">Jewellery</button>
+                        <button class="btn btn-outline-dark ms-3" type="button" data-category="electronics">Electronics</button>
                     </form>
+                    <div class="container">
+                        <div class="products row"></div>
+                    </div>
                 </div>
-            </nav>
-            <div class="container mt-5">
-                <div class="row product-item-container">
-                </div>
-            </div>
-            
+            </nav> 
         </div>
     </section>
     <footer class="mt-5 d-flex justify-content-center">
