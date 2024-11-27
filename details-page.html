@@ -79,6 +79,7 @@
                         <h5 class="card-title">${product.title.length > 20 ? product.title.slice(0, 20) + "..." : product.title}</h5>
                         <p class="card-text">$${product.price}</p>
                         <a href="product-details.html?id=${product.id}" class="btn btn-dark">Details</a>
+                        <a href="#" class="btn btn-dark ms-3">Add to Cart</a>
                     </div>
                 </div>`
                     )
@@ -89,7 +90,7 @@
     });
     const carouselElement = document.querySelector('#productCarousel');
             new bootstrap.Carousel(carouselElement, {
-                interval: 5, 
+                interval: 1000, 
                 ride: 'carousel', 
                 pause: false, 
                 wrap: true,
