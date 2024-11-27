@@ -33,4 +33,17 @@
     height: 400px;
     object-fit: contain; 
   }
+  .carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    margin: 10px;
+}
+.carousel-inner {
+    transition: transform 1s linear !important;
+}
+
   
