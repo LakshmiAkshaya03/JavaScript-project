@@ -1,7 +1,6 @@
 
 const productContainer = document.querySelector(".products");
 let allProducts = [];
-
 function fetchProducts() {
     fetch("https://fakestoreapi.com/products")
         .then((resp) => resp.json())
@@ -12,7 +11,6 @@ function fetchProducts() {
         })
         .catch((err) => console.log("Error occurred while fetching data", err));
 }
-
 function displayProducts(filteredProducts) {
     productContainer.innerHTML = ""; 
     filteredProducts.forEach((product) => {
@@ -22,7 +20,7 @@ function displayProducts(filteredProducts) {
         const productCard = `
         <div class="col col-lg-4 col-md-6 col-12">
             <div class="card">
-                <img src=${product.image} class="card-img-top p-2" alt="${product.title}">
+                <img src=${product.image} class="card-img-top p-2 " alt="${product.title}">
                 <div class="card-body">
                     <h5 class="card-title">${reducedTitle}</h5>
                     <p class="card-text">${reducedDescription}</p>
@@ -32,7 +30,7 @@ function displayProducts(filteredProducts) {
                 </ul>
                 <div class="card-body text-center">
                     <a href="details-page.html?id=${product.id}" class="btn btn-dark">Details</a>
-                    <a href="#" class="btn btn-dark">Add to Cart</a>
+                    <a href="cart-page.html?id=${product.id,1}" class="btn btn-dark">Add to Cart</a>
                 </div>
             </div>
         </div>`;
@@ -60,5 +58,6 @@ function setupCategoryFilters() {
 }
 
 fetchProducts();
+
 
 

@@ -14,7 +14,7 @@
 <body>
     <div class="product-details mt-5">
     </div>
-    <h3>You may like products</h3>
+    <h3 class="ms-3">You may like products</h3>
     <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
         </div>
@@ -33,7 +33,7 @@
             productDetails.innerHTML = `
                 <div class="product-container d-flex">
                     <div class="product-img mt-3">
-                        <img src="${product.image}" alt="product-image" class="ms-5">
+                        <img src="${product.image}" alt="product-image" class="ms-5 ">
                     </div>
                     <div class="product-info mt-5 ms-5">
                         <h3 class="fs-3 text-secondary">${product.category.toUpperCase()}</h3>
@@ -90,7 +90,7 @@
     });
     const carouselElement = document.querySelector('#productCarousel');
             new bootstrap.Carousel(carouselElement, {
-                interval: 1000, 
+                interval: 1800, 
                 ride: 'carousel', 
                 pause: false, 
                 wrap: true,

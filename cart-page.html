@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,12 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a href="index.html "class="text-decoration-none fs-2 fw-bold text-dark">Ecommerce</a>
+                <a href="index.html "class="text-decoration-none fs-2 fw-bold text-dark  ms-5">Ecommerce</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -48,16 +46,58 @@
     </header>
     <div class="container-fluid">
         <div class="contact-section mt-5 ">
-                  <h1 class="text-center mb-4">Cart</h1>
+            <h1 class="text-center mb-4">Cart</h1>
+            <hr>
+        </div>
+    </div>
+
+   <div class="container-fluid">
+    <div class="row">
+        <div class="col col-lg-8 col-md-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Item List</h5>
                     <hr>
+                    <div class="item-list">
+
                     </div>
-                    </div>
-    
-  
+                </div>
+            </div>
+        </div>
+        <div class="col col-lg-4 col-md-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Order Summary</h5>
+                    <hr>
+                    <p>Total Items: <span id="total-items" class="float-end"></span></p>
+                    <p>Subtotal: <span id="subtotal" class="float-end"></span></p>
+                    <p>Shipping: <span class="float-end"></span></p>
+                    <hr>
+                    <h6>Total Amount: <span id="total-amount" class="float-end"></span></h6>
+                    <button class="btn btn-dark w-25 mt-3 rounded-2">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+    <script>
+        let cartData=[]
+        function addToCart(id,qnty){
+            console.log(id,quantity);
+        }
+
+        let productArr={ID:id,Quantity:quantity}
+        cartData.push(productArr)
+        let totalQnty=0
+        cartData.forEach((ele)=>{
+            totalQnty+=ele.Quantity
+        })
+
+    </script>
 
     <footer class="mt-5 d-flex justify-content-center">
         <par>Made with by <i class="fa-solid fa-heart text-danger"></i><span> Lakshmi Akshaya T</span> </par>
     </footer>
-    <script src="script.js"></script>
+    
 </body>
 </html>
