@@ -30,7 +30,7 @@ function displayProducts(filteredProducts) {
                 </ul>
                 <div class="card-body text-center">
                     <a href="details-page.html?id=${product.id}" class="btn btn-dark">Details</a>
-                    <a href="cart-page.html?id=${product.id,1}" class="btn btn-dark">Add to Cart</a>
+                    <button class="btn btn-dark " onclick="addToCart(${product.id},1)">Add to Cart</button>
                 </div>
             </div>
         </div>`;
@@ -58,6 +58,37 @@ function setupCategoryFilters() {
 }
 
 fetchProducts();
+
+        const itemList=document.querySelector('.item-list')
+        const totalItems=document.querySelector('#totalItems')
+        const subtotal=document.querySelector('#subtotal')
+        const shipping=document.querySelector('#shipping')
+        const totalAmount=document.querySelector('#totalAmount')
+        const cartQtyCount=document.querySelector('.cartQtyCount')
+
+
+        let cartData=[]
+        function addToCart(Id,Quantity){
+            console.log(Id,Quantity);
+       
+
+        let productArr={ID:Id,Quantity:Quantity}
+        cartData.push(productArr)
+        let totalQnty=0
+        cartData.forEach((ele)=>{
+            totalQnty+=ele.Quantity
+        })
+   
+        cartQtyCount.innerText=totalQnty
+    }
+
+        
+
+
+
+
+
+
 
 
 

@@ -71,7 +71,7 @@
                     <hr>
                     <p>Total Items: <span id="total-items" class="float-end"></span></p>
                     <p>Subtotal: <span id="subtotal" class="float-end"></span></p>
-                    <p>Shipping: <span class="float-end"></span></p>
+                    <p>Shipping: <span id=""shipping class="float-end"></span></p>
                     <hr>
                     <h6>Total Amount: <span id="total-amount" class="float-end"></span></h6>
                     <button class="btn btn-dark w-25 mt-3 rounded-2">Checkout</button>
@@ -80,20 +80,7 @@
         </div>
     </div>
    </div>
-    <script>
-        let cartData=[]
-        function addToCart(id,qnty){
-            console.log(id,quantity);
-        }
-
-        let productArr={ID:id,Quantity:quantity}
-        cartData.push(productArr)
-        let totalQnty=0
-        cartData.forEach((ele)=>{
-            totalQnty+=ele.Quantity
-        })
-
-    </script>
+    <script src="script.js"></script>
 
     <footer class="mt-5 d-flex justify-content-center">
         <par>Made with by <i class="fa-solid fa-heart text-danger"></i><span> Lakshmi Akshaya T</span> </par>
