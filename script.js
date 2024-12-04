@@ -73,12 +73,12 @@ function singleProductHandler(product) {
             <div class="product-img mt-3">
                 <img src="${product.image}" alt="product-image" class="ms-5 ">
             </div>
-            <div class="product-info mt-5 ms-5">
+            <div class="product-info mt-4 ms-5">
                 <h3 class="fs-3 text-secondary">${product.category.toUpperCase()}</h3>
                 <p class="fs-1 fw-lighter">${product.title}</p>
                 <p class="fw-lighter">${product.rating.rate} <i class="fa-solid fa-star"></i></p>
                 <div class="product-price fs-3 text-body-tertiary fw-lighter">$${product.price}</div>
-                <div class="product-description fw-lighter text-body-tertiary fs-6 mt-2">${product.description}</div>
+                <div class="product-description fw-normal text-body-secondary fs-6 mt-2 text-wrap">${product.description}</div>
                 <div class="product-button mt-3">
                     <button class="btn btn-dark " onclick="addToCart(${product.id},1)">Add to Cart</button>
                     <a href="cart-page.html" class="btn btn-dark ms-3">Go to Cart</a>
@@ -95,7 +95,7 @@ function fetchProductsforDetails() {
 
 function productSlider(data) {
 const carouselInner = document.querySelector('.carousel-inner');
-carouselInner.innerHTML = ""; 
+
 
 
 const groupedProducts = [];
@@ -115,9 +115,8 @@ const carouselItem = `
             <img src="${product.image}" class="card-img-top p-2" alt="${product.title}">
             <div class="card-body">
                 <h5 class="card-title">${product.title.length > 20 ? product.title.slice(0, 20) + "..." : product.title}</h5>
-                <p class="card-text">$${product.price}</p>
-                <a href="product-details.html?id=${product.id}" class="btn btn-dark">Details</a>
-                <a href="#" class="btn btn-dark ms-3">Add to Cart</a>
+                <a href="details-page.html?id=${product.id}" class="btn btn-dark mt-2 ms-3">Details</a>
+                <button class="btn btn-dark mt-2 ms-3" onclick="addToCart(${product.id},1)">Add to Cart</button>
             </div>
         </div>`
             )
@@ -128,7 +127,7 @@ carouselInner.innerHTML += carouselItem;
 });
 const carouselElement = document.querySelector('#productCarousel');
     new bootstrap.Carousel(carouselElement, {
-        interval: 1800, 
+        interval: 2500, 
         ride: 'carousel', 
         pause: false, 
         wrap: true,
