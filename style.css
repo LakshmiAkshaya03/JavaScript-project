@@ -45,5 +45,9 @@ header{
 .carousel-inner {
     transition: transform 1s linear !important;
 }
+.cart-list img{
+    width: 100px;
+    height: 100px;
+}
 
   

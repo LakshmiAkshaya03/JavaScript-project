@@ -59,36 +59,123 @@ function setupCategoryFilters() {
 
 fetchProducts();
 
-        const itemList=document.querySelector('.item-list')
-        const totalItems=document.querySelector('#totalItems')
-        const subtotal=document.querySelector('#subtotal')
-        const shipping=document.querySelector('#shipping')
-        const totalAmount=document.querySelector('#totalAmount')
-        const cartQtyCount=document.querySelector('.cartQtyCount')
+// Fetch product by ID
+async function fetchProductById(productId) {
+    try {
+        const response = await fetch(`https://fakestoreapi.com/products/${productId}`);
+        if (!response.ok) {
+            throw new Error(`Error fetching product with ID: ${productId}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching product:', error);
+    }
+}
 
+// Add to Cart
+function addToCart(productId) {
+    fetchProductById(productId).then((product) => {
+        if (!product) return; // Exit if product fetch fails
+        let cart = JSON.parse(localStorage.getItem('cart')) || []; // Load cart from localStorage
+        const existingProduct = cart.find((item) => item.id === product.id);
 
-        let cartData=[]
-        function addToCart(Id,Quantity){
-            console.log(Id,Quantity);
-       
+        if (existingProduct) {
+            existingProduct.quantity += 1; // Increment quantity
+        } else {
+            cart.push({ ...product, quantity: 1 }); // Add new product
+        }
 
-        let productArr={ID:Id,Quantity:Quantity}
-        cartData.push(productArr)
-        let totalQnty=0
-        cartData.forEach((ele)=>{
-            totalQnty+=ele.Quantity
-        })
-   
-        cartQtyCount.innerText=totalQnty
+        localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart to localStorage
+        updateCartCount(); // Update the cart count in the header
+    });
+}
+
+// Update Cart Count in Header
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    // Ensure the cart count element exists
+    const cartQtyCount = document.querySelector('.cartQtyCount');
+    if (cartQtyCount) {
+        cartQtyCount.textContent = totalQuantity; // Update count
+    }
+}
+
+// Render Cart Items
+function renderCartItems() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const itemListContainer = document.querySelector('.item-list');
+    const totalItemsEl = document.getElementById('total-items');
+    const subtotalEl = document.getElementById('subtotal');
+    const totalAmountEl = document.getElementById('total-amount');
+    const cartDataContainer = document.querySelector('.cartDataOfProducts');
+
+    if (!itemListContainer || !cartDataContainer) return; // Exit if elements are not found
+
+    itemListContainer.innerHTML = ''; // Clear existing items
+
+    if (cart.length === 0) {
+        cartDataContainer.innerHTML = `
+            <div class="text-center">
+                <h3>Your Cart is Empty</h3>
+                <a href="index.html" class="btn btn-dark mt-3">Continue Shopping</a>
+            </div>`;
+        return;
     }
 
-        
+    let subtotal = 0;
+    cart.forEach((item) => {
+        subtotal += item.price * item.quantity;
 
+        const itemRow = document.createElement('div');
+        itemRow.className = 'row mb-3';
+        itemRow.innerHTML = `
+            <div class="cart-list col-8 d-flex mt-3 mb-3">
+                <img src="${item.image}" class="ms-2">
+                <h6 class="text-black text-center mt-4">${item.title}</h6>
+            </div>
+            <div class="col-4 text-end mb-3 mt-5">
+                <button class="btn btn-sm btn-outline-dark me-5" onclick="updateQuantity(${item.id}, -1)">-</button>
+                <span class="me-5" >${item.quantity}</span>
+                <button class="btn btn-sm btn-outline-dark" onclick="updateQuantity(${item.id}, 1)">+</button>
+            </div>
+            <hr>
+        `;
+        itemListContainer.appendChild(itemRow);
+    });
 
+    // Update totals
+    totalItemsEl.textContent = cart.length;
+    subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+    totalAmountEl.textContent = `$${(subtotal + 30).toFixed(2)}`; // Assuming $30 shipping
+}
 
+// Update Quantity in Cart
+function updateQuantity(productId, change) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const product = cart.find((item) => item.id === productId);
 
+    if (product) {
+        product.quantity += change;
 
+        if (product.quantity <= 0) {
+            cart = cart.filter((item) => item.id !== productId); // Remove item if quantity <= 0
+        }
 
+        localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart
+        renderCartItems(); // Re-render cart
+        updateCartCount(); // Update cart count in header
+    }
+}
 
+// Initialize on Page Load
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
 
-
+    // Render cart items only if on the cart page
+    const itemListContainer = document.querySelector('.item-list');
+    if (itemListContainer) {
+        renderCartItems();
+    }
+});

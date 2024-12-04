@@ -8,6 +8,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+</head>
 <body>
 <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -33,48 +34,50 @@
                         <a class="nav-link " aria-current="page" href="contact-page.html">Contact</a>
                     </li>
                 </ul>
-                <form class="d-flex p-2 me-1  ">
+                <form class="d-flex p-2 me-1">
                     <a href="login.html" class="btn btn-outline-dark ms-3"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
                     <a href="register.html" class="btn btn-outline-dark ms-3"> <i class="fa-solid fa-user-plus"></i> Register</a>
-                    <a href="cart-page.html" class="btn btn-outline-dark ms-3 cartCount"><i class="fa-solid fa-cart-shopping"></i> Cart <span class="cartQtyCount text-black">0</span></a>
+                    <a href="cart-page.html" class="btn btn-outline-dark ms-3 cartCount">
+                        <i class="fa-solid fa-cart-shopping"></i> Cart 
+                        <span class="cartQtyCount text-black">(0)</span>
+                    </a>
                 </form>
             </div>
         </div>
     </nav>
 </header>
-    <section class="hero-section mt-2">
-        <div class="container-fluid">
-            <img src="main.png.jpg" alt="banner-img" class="img-fluid">
-            <div class="hero-content position-absolute bottom-50 ps-5">
-                <h3 class="text-white h1 fw-lighter">New Season Arrivals</h3><br>
-                <p class="text-white h4 fw-light ">This is a wider card with supporting text below as a natural lead-in
-                    to additional content.This content is little bit longer.</p>
-            </div>
+<section class="hero-section mt-2">
+    <div class="container-fluid">
+        <img src="main.png.jpg" alt="banner-img" class="img-fluid">
+        <div class="hero-content position-absolute bottom-50 ps-5">
+            <h3 class="text-white h1 fw-lighter">New Season Arrivals</h3><br>
+            <p class="text-white h4 fw-light">This is a wider card with supporting text below as a natural lead-in to additional content. This content is little bit longer.</p>
         </div>
-    </section>
-    <section class="products-sections  ">
-        <div class="container-fluid mt-5">
-            <h1 class="fw-lighter d-flex justify-content-center ">Latest Products</h1>
-            <hr>
-            <nav class="navbar bg-body-tertiary">
-                <div class="container-fluid">
-                    <form class="d-flex justify-content-center mx-auto mt-5 ">
-                        <button class="btn btn-outline-dark ms-3" type="button" data-category="all">All</button>
-                        <button class="btn btn-outline-dark ms-3" type="button" data-category="men's clothing">Men's Clothing</button>
-                        <button class="btn btn-outline-dark ms-3" type="button" data-category="women's clothing">Women's Clothing</button>
-                        <button class="btn btn-outline-dark ms-3" type="button" data-category="jewelery">Jewellery</button>
-                        <button class="btn btn-outline-dark ms-3" type="button" data-category="electronics">Electronics</button>
-                    </form>
-                    <div class="container mt-5">
-                        <div class="products row"></div>
-                    </div>
+    </div>
+</section>
+<section class="products-sections">
+    <div class="container-fluid mt-5">
+        <h1 class="fw-lighter d-flex justify-content-center">Latest Products</h1>
+        <hr>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <form class="d-flex justify-content-center mx-auto mt-5">
+                    <button class="btn btn-outline-dark ms-3" type="button" data-category="all">All</button>
+                    <button class="btn btn-outline-dark ms-3" type="button" data-category="men's clothing">Men's Clothing</button>
+                    <button class="btn btn-outline-dark ms-3" type="button" data-category="women's clothing">Women's Clothing</button>
+                    <button class="btn btn-outline-dark ms-3" type="button" data-category="jewelery">Jewellery</button>
+                    <button class="btn btn-outline-dark ms-3" type="button" data-category="electronics">Electronics</button>
+                </form>
+                <div class="container mt-5">
+                    <div class="products row"></div>
                 </div>
-            </nav> 
-        </div>
-    </section>
-    <footer class="mt-5 d-flex justify-content-center">
-        <par>Made with by <i class="fa-solid fa-heart text-danger"></i><span> Lakshmi Akshaya T</span> </par>
-    </footer>
-    <script src="script.js"></script>
+            </div>
+        </nav>
+    </div>
+</section>
+<footer class="mt-5 d-flex justify-content-center">
+    <par>Made with by <i class="fa-solid fa-heart text-danger"></i><span> Lakshmi Akshaya T</span></par>
+</footer>
+<script src="script.js"></script>
 </body>
 </html>
