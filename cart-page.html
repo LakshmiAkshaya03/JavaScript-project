@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <!-- Header -->
+    
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -42,15 +42,17 @@
                                 class="fa-solid fa-right-to-bracket"></i> Login</a>
                         <a href="register.html" class="btn btn-outline-dark ms-3"><i class="fa-solid fa-user-plus"></i>
                             Register</a>
-                        <a href="cart-page.html" class="btn btn-outline-dark ms-3"><i class="fa-solid fa-cart-shopping"></i>
-                            Cart <span class="badge bg-danger count">0</span></a>
+                        <a href="cart-page.html" class="btn btn-outline-dark ms-3 cartCount">
+                            <i class="fa-solid fa-cart-shopping"></i> Cart 
+                            <span class="cartQtyCount ">0</span>
+                        </a>
                     </form>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- Main Cart Section -->
+  
     <div class="container-fluid mt-5">
         <div class="contact-section">
             <h1 class="text-center mb-4">Cart</h1>
@@ -59,11 +61,10 @@
         <div class="row cartDataOfProducts">
             <div class="col-lg-8 col-md-12">
                 <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Item List</h5>
+                    <div class="card-body ">
+                        <h5 class="card-title ">Item List</h5>
                         <hr>
                         <div class="item-list">
-                           <hr>
                         </div>
                     </div>
                 </div>
@@ -85,7 +86,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
+
     <footer class="mt-5 d-flex justify-content-center">
         <p>Made with <i class="fa-solid fa-heart text-danger"></i> by Lakshmi Akshaya T</p>
     </footer>
