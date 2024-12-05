@@ -69,22 +69,23 @@ function fetchSingleProduct() {
 function singleProductHandler(product) {
     const productDetails = document.querySelector('.product-details');
     productDetails.innerHTML = `
-        <div class="product-container d-flex">
-            <div class="product-img mt-3">
-                <img src="${product.image}" alt="product-image" class="ms-5 ">
-            </div>
-            <div class="product-info mt-4 ms-5">
-                <h3 class="fs-3 text-secondary">${product.category.toUpperCase()}</h3>
-                <p class="fs-1 fw-lighter">${product.title}</p>
-                <p class="fw-lighter">${product.rating.rate} <i class="fa-solid fa-star"></i></p>
-                <div class="product-price fs-3 text-body-tertiary fw-lighter">$${product.price}</div>
-                <div class="product-description fw-normal text-body-secondary fs-6 mt-2 text-wrap">${product.description}</div>
-                <div class="product-button mt-3">
-                    <button class="btn btn-dark " onclick="addToCart(${product.id},1)">Add to Cart</button>
-                    <a href="cart-page.html" class="btn btn-dark ms-3">Go to Cart</a>
-                </div>
-            </div>
-        </div>`;
+    <div class="product-container d-flex">
+    <div class="product-img mt-3">
+        <img src="${product.image}" alt="product-image" class="ms-5">
+    </div>
+    <div class="product-info mt-4 ms-3">
+        <h3 class="fs-3 text-secondary">${product.category.toUpperCase()}</h3>
+        <p class="fs-1 fw-lighter">${product.title}</p>
+        <p class="fw-lighter">${product.rating.rate} <i class="fa-solid fa-star"></i></p>
+        <div class="product-price fs-3 text-body-tertiary fw-lighter">$${product.price}</div>
+        <div class="product-description fw-normal text-body-secondary fs-6 mt-2 text-wrap">${product.description}</div>
+        <div class="product-button mt-3">
+            <button class="btn btn-dark" onclick="addToCart(${product.id},1)">Add to Cart</button>
+            <a href="cart-page.html" class="btn btn-dark ms-3 ps-2 pe-2">Go to Cart</a>
+        </div>
+    </div>
+</div>
+`;
 }
 
 function fetchProductsforDetails() {
@@ -116,7 +117,7 @@ const carouselItem = `
             <div class="card-body">
                 <h5 class="card-title">${product.title.length > 20 ? product.title.slice(0, 20) + "..." : product.title}</h5>
                 <a href="details-page.html?id=${product.id}" class="btn btn-dark mt-2 ms-3">Details</a>
-                <button class="btn btn-dark mt-2 ms-3" onclick="addToCart(${product.id},1)">Add to Cart</button>
+                <button class="btn btn-dark mt-2 ms-3 text-nowrap" onclick="addToCart(${product.id},1)">Add to Cart</button>
             </div>
         </div>`
             )
@@ -184,8 +185,8 @@ function updateCartCount() {
 function renderCartItems() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const itemListContainer = document.querySelector('.item-list');
-    const totalProductsEl = document.getElementById('total-products'); // For total products count
-    const totalPriceEl = document.getElementById('total-price'); // For total price of items
+    const totalProductsEl = document.getElementById('total-products'); 
+    const totalPriceEl = document.getElementById('total-price'); 
     const totalAmountEl = document.getElementById('total-amount');
     const cartDataContainer = document.querySelector('.cartDataOfProducts');
 
@@ -195,10 +196,11 @@ function renderCartItems() {
 
     if (cart.length === 0) {
         cartDataContainer.innerHTML = `
-            <div class="container text-center mt-5 bg-body-secondary">
-                <h1 class="fw-lighter fs-1 mt-5">Your Cart is Empty</h1>
-                <a href="index.html" class="btn btn-outline-dark mt-3 mb-5"><i class="fa-solid fa-arrow-left"></i>
-                Continue Shopping</a>
+            <div class="container text-center mt-5 bg-body-secondary p-4">
+                <h1 class="fw-lighter fs-4 fs-md-3 fs-lg-2 mt-3">Your Cart is Empty</h1>
+                <a href="index.html" class="btn btn-outline-dark mt-3 mb-4">
+                    <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+                </a>
             </div>`;
         if (totalProductsEl && totalPriceEl) {
             totalProductsEl.textContent = 0;
@@ -206,7 +208,7 @@ function renderCartItems() {
         }
         totalAmountEl.textContent = `$30.00`;
         return;
-    }
+    }    
 
     let totalProducts = 0;
     let subtotal = 0;
@@ -221,12 +223,13 @@ function renderCartItems() {
                 <img src="${item.image}" class="ms-2">
                 <h6 class="text-black mt-5 ms-5 text-wrap ps-5">${item.title}</h6>
             </div>
-            <div class="col-4 text-end  mb-3">
-                <button class="btn btn-sm btn-outline-dark me-5 mt-4 fs-5" onclick="updateQuantity(${item.id}, -1)">-</button>
-                <span class="me-5 mt-4 fs-5">${item.quantity}</span>
-                <button class="btn btn-sm btn-outline-dark mt-4 fs-5" onclick="updateQuantity(${item.id}, 1)">+</button>
-                <p class="pt-5 fs-6 fw-medium pe-5">${item.quantity} x $${item.price.toFixed(2)}</p>
-            </div>
+            <div class="col-4 text-end mb-3 d-flex justify-content-between align-items-center">
+            <button class="btn btn-sm btn-outline-dark me-3 fs-5" onclick="updateQuantity(${item.id}, -1)">-</button>
+            <span class="fs-5">${item.quantity}</span>
+            <button class="btn btn-sm btn-outline-dark ms-3 fs-5" onclick="updateQuantity(${item.id}, 1)">+</button>
+        </div>
+        <p class="pt-2 fs-6 fw-medium text-end">${item.quantity} x $${item.price.toFixed(2)}</p>
+        
             <hr>
         `;
         itemListContainer.appendChild(itemRow);

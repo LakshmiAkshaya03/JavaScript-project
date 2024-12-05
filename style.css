@@ -52,6 +52,115 @@ header{
 .about-section p{
     font-size: large
 }
+/* Small Devices (max-width: 767px) */
+@media (max-width: 767px) {
+    .product-container {
+        flex-direction: column; /* Stack content vertically */
+        align-items: center; /* Center align content */
+        text-align: center; /* Center align text */
+    }
+
+    .product-img img {
+        width: 100%; /* Make image responsive */
+        max-width: 300px; /* Limit maximum size */
+        margin-bottom: 20px; /* Add space below the image */
+    }
+
+    .product-info {
+        margin: 10px 0; /* Add space between sections */
+        padding: 15px; /* Add padding for readability */
+    }
+
+    .product-info h3,
+    .product-info p,
+    .product-price,
+    .product-description {
+        display: block; /* Ensure all elements are visible */
+        margin-bottom: 15px; /* Add space between elements */
+        font-size: 1rem; /* Adjust font size for small screens */
+    }
+
+    .product-button {
+        display: flex;
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: center; /* Center align buttons */
+        gap: 10px; /* Add spacing between buttons */
+        width: 100%; /* Make buttons responsive */
+    }
+
+    .product-button .btn {
+        width: 80%; /* Buttons take up most of the screen width */
+    }
+}
+/* Default styles for carousel items */
+.carousel-item .card {
+    width: 100%; /* Full width by default */
+    transition: all 0.3s ease;
+}
+
+/* For small mobile devices (320px - 480px) */
+@media (max-width: 480px) {
+    .carousel-item .card {
+        width: 100% !important; /* Full width on very small screens */
+    }
+}
+
+/* For medium mobile devices (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+    .carousel-item .card {
+        width: 90% !important; /* Slightly smaller width for better fitting */
+        margin: 0 auto; /* Center the cards */
+    }
+}
+
+/* For large mobile and small tablet devices (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .carousel-item .card {
+        width: 45% !important; /* Show two cards per row on tablets */
+        margin: 0 auto; /* Center the cards */
+    }
+}
+
+/* For medium to large tablets and small desktops (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .carousel-item .card {
+        width: 30% !important; /* Show three cards per row */
+        margin: 0 auto; /* Center the cards */
+    }
+}
+
+/* For larger desktops (1200px - 1440px) */
+@media (min-width: 1200px) and (max-width: 1440px) {
+    .carousel-item .card {
+        width: 22% !important; /* Show four cards per row */
+        margin: 0 auto; /* Center the cards */
+    }
+}
+
+/* For very large screens (larger than 1440px) */
+@media (min-width: 1440px) {
+    .carousel-item .card {
+        width: 18rem !important; /* Fixed width for large screens */
+    }
+}
+
+@media (max-width: 767px) { 
+    .carousel-item .card {
+        width: 100% !important; 
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .carousel-item .card {
+        width: 45% !important; 
+    }
+}
+
+@media (min-width: 992px) {
+    .carousel-item .card {
+        width: 18rem !important;
+    }
+}
 
 
   
