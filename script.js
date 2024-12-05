@@ -88,53 +88,56 @@ function singleProductHandler(product) {
 `;
 }
 
-function fetchProductsforDetails() {
-    fetch('https://fakestoreapi.com/products')
-        .then((resp) => resp.json())
-        .then((data) => productSlider(data)).catch((err)=>console.log("error has occured to fetch data",err))
-}
 
-function productSlider(data) {
-const carouselInner = document.querySelector('.carousel-inner');
+async function fetchProductsforDetails() {
+    try {
+      const response = await fetch('https://fakestoreapi.com/products'); 
+      const products = await response.json();
+      displaySliderProducts(products);
+      startAutoScroll(); 
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  }
+  
 
-
-
-const groupedProducts = [];
-for (let i = 0; i < data.length; i += 3) {
-groupedProducts.push(data.slice(i, i + 3)); 
-}
-
-groupedProducts.forEach((group, idx) => {
-const activeClass = idx === 0 ? "active" : "";
-const carouselItem = `
-<div class="carousel-item ${activeClass}">
-    <div class="d-flex justify-content-center">
-        ${group
-            .map(
-                (product) => `
-        <div class="card mx-2 mt-3" style="width: 18rem; ">
+  function displaySliderProducts(products) {
+    const carousel = document.getElementById('carousel');
+    products.forEach(product => {
+      const productCard = `
+      <div class="product-card mx-2 mt-3" style="width: 18rem; ">
             <img src="${product.image}" class="card-img-top p-2" alt="${product.title}">
-            <div class="card-body">
-                <h5 class="card-title">${product.title.length > 20 ? product.title.slice(0, 20) + "..." : product.title}</h5>
-                <a href="details-page.html?id=${product.id}" class="btn btn-dark mt-2 ms-3">Details</a>
-                <button class="btn btn-dark mt-2 ms-3 text-nowrap" onclick="addToCart(${product.id},1)">Add to Cart</button>
+            <h5 class="card-title">${product.title.length > 15 ? product.title.slice(0, 15) + "..." : product.title}</h5>
+            <div class="d-flex mt-2">
+                <a href="details-page.html?id=${product.id}" class="btn btn-dark ">Details</a>
+                <button class="btn btn-dark ms-2 " onclick="addToCart(${product.id},1)">Add to Cart</button>
             </div>
-        </div>`
-            )
-            .join("")}
-    </div>
-</div>`;
-carouselInner.innerHTML += carouselItem;
-});
-const carouselElement = document.querySelector('#productCarousel');
-    new bootstrap.Carousel(carouselElement, {
-        interval: 2500, 
-        ride: 'carousel', 
-        pause: false, 
-        wrap: true,
+      `;
+      carousel.innerHTML += productCard;
     });
-}
+  
+   
+    const clone = carousel.innerHTML;
+    carousel.innerHTML += clone;
+  }
+  
+  
+  function startAutoScroll() {
+    const carousel = document.getElementById('carousel');
+    let scrollPosition = 0;
+  
+    setInterval(() => {
+      scrollPosition += 2; 
+      carousel.scrollLeft = scrollPosition;
+  
+      
+      if (scrollPosition >= carousel.scrollWidth / 2) {
+        scrollPosition = 0;
+      }
+    }, 40); 
+  }
 
+ 
 
 fetchSingleProduct();
 fetchProductsforDetails();
@@ -217,20 +220,22 @@ function renderCartItems() {
         subtotal += item.price * item.quantity;
 
         const itemRow = document.createElement('div');
-        itemRow.className = 'row mb-3';
-        itemRow.innerHTML = `
-            <div class="cart-list col-8 d-flex mb-3 ">
-                <img src="${item.image}" class="ms-2">
-                <h6 class="text-black mt-5 ms-5 text-wrap ps-5">${item.title}</h6>
-            </div>
-            <div class="col-4 text-end mb-3 d-flex justify-content-between align-items-center">
-            <button class="btn btn-sm btn-outline-dark me-3 fs-5" onclick="updateQuantity(${item.id}, -1)">-</button>
-            <span class="fs-5">${item.quantity}</span>
-            <button class="btn btn-sm btn-outline-dark ms-3 fs-5" onclick="updateQuantity(${item.id}, 1)">+</button>
-        </div>
-        <p class="pt-2 fs-6 fw-medium text-end">${item.quantity} x $${item.price.toFixed(2)}</p>
         
-            <hr>
+        itemRow.innerHTML = `
+        <div class="row mb-3">
+        <div class="cart-list col-lg-8 col-md-12 col-12 d-flex mb-3">
+          <img src="${item.image}" class="ms-4">
+          <h6 class="text-black mt-5 ms-5 text-wrap ps-5">${item.title}</h6>
+        </div>
+        <div class="col-lg-4 col-md-12 col-12 text-end mb-3 d-flex justify-content-between align-items-center">
+          <button class="btn btn-sm btn-outline-dark me-3 fs-5" onclick="updateQuantity(${item.id}, -1)">-</button>
+          <span class="fs-5">${item.quantity}</span>
+          <button class="btn btn-sm btn-outline-dark ms-3 fs-5 me-3" onclick="updateQuantity(${item.id}, 1)">+</button>
+        </div>
+      </div>
+      <p class="pt-2 fs-6 fw-medium text-end pe-5">${item.quantity} x $${item.price.toFixed(2)}</p>
+      <hr>
+      
         `;
         itemListContainer.appendChild(itemRow);
     });

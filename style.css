@@ -52,115 +52,67 @@ header{
 .about-section p{
     font-size: large
 }
-/* Small Devices (max-width: 767px) */
 @media (max-width: 767px) {
     .product-container {
-        flex-direction: column; /* Stack content vertically */
-        align-items: center; /* Center align content */
-        text-align: center; /* Center align text */
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .product-img img {
-        width: 100%; /* Make image responsive */
-        max-width: 300px; /* Limit maximum size */
-        margin-bottom: 20px; /* Add space below the image */
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 20px;
     }
 
     .product-info {
-        margin: 10px 0; /* Add space between sections */
-        padding: 15px; /* Add padding for readability */
+        margin: 10px 0;
+        padding: 15px;
     }
 
     .product-info h3,
     .product-info p,
     .product-price,
     .product-description {
-        display: block; /* Ensure all elements are visible */
-        margin-bottom: 15px; /* Add space between elements */
-        font-size: 1rem; /* Adjust font size for small screens */
+        display: block;
+        margin-bottom: 15px;
+        font-size: 1rem;
     }
 
     .product-button {
         display: flex;
-        flex-direction: column; /* Stack buttons vertically */
-        align-items: center; /* Center align buttons */
-        gap: 10px; /* Add spacing between buttons */
-        width: 100%; /* Make buttons responsive */
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
     }
 
     .product-button .btn {
-        width: 80%; /* Buttons take up most of the screen width */
-    }
-}
-/* Default styles for carousel items */
-.carousel-item .card {
-    width: 100%; /* Full width by default */
-    transition: all 0.3s ease;
-}
-
-/* For small mobile devices (320px - 480px) */
-@media (max-width: 480px) {
-    .carousel-item .card {
-        width: 100% !important; /* Full width on very small screens */
+        width: 80%;
     }
 }
 
-/* For medium mobile devices (481px - 767px) */
-@media (min-width: 481px) and (max-width: 767px) {
-    .carousel-item .card {
-        width: 90% !important; /* Slightly smaller width for better fitting */
-        margin: 0 auto; /* Center the cards */
-    }
-}
-
-/* For large mobile and small tablet devices (768px - 991px) */
-@media (min-width: 768px) and (max-width: 991px) {
-    .carousel-item .card {
-        width: 45% !important; /* Show two cards per row on tablets */
-        margin: 0 auto; /* Center the cards */
-    }
-}
-
-/* For medium to large tablets and small desktops (992px - 1199px) */
-@media (min-width: 992px) and (max-width: 1199px) {
-    .carousel-item .card {
-        width: 30% !important; /* Show three cards per row */
-        margin: 0 auto; /* Center the cards */
-    }
-}
-
-/* For larger desktops (1200px - 1440px) */
-@media (min-width: 1200px) and (max-width: 1440px) {
-    .carousel-item .card {
-        width: 22% !important; /* Show four cards per row */
-        margin: 0 auto; /* Center the cards */
-    }
-}
-
-/* For very large screens (larger than 1440px) */
-@media (min-width: 1440px) {
-    .carousel-item .card {
-        width: 18rem !important; /* Fixed width for large screens */
-    }
-}
-
-@media (max-width: 767px) { 
-    .carousel-item .card {
-        width: 100% !important; 
-    }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-    .carousel-item .card {
-        width: 45% !important; 
-    }
-}
-
-@media (min-width: 992px) {
-    .carousel-item .card {
-        width: 18rem !important;
-    }
-}
-
-
-  
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem;
+    scroll-behavior: smooth;
+  }
+  .carousel-container::-webkit-scrollbar {
+    display: none; 
+  }
+  .product-card {
+    min-width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .product-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
